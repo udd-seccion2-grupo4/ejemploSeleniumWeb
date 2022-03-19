@@ -31,6 +31,7 @@ public class AppTest {
                 .addArguments("--disable-extensions-file-access-check")
                 .addArguments("--headless")
                 .addArguments("--incognito")
+                .addArguments("--disable-dev-shm-usage")
                 .addArguments("--disable-gpu");
         driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
