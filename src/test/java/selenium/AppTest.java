@@ -20,7 +20,7 @@ public class AppTest {
     @Before
     public void setUp() {
         System.out.println("Iniciando configuración...");
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options
                 .addArguments("--no-sandbox")
