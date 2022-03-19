@@ -3,12 +3,11 @@ package selenium;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Test;
@@ -22,7 +21,17 @@ public class AppTest {
     public void setUp() {
         System.out.println("Iniciando configuración...");
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options
+                .addArguments("--no-sandbox")
+                .addArguments("--test-type")
+                .addArguments("--ignore-certificate-errors")
+                .addArguments("--disable-popup-blocking")
+                .addArguments("--disable-default-apps")
+                .addArguments("--disable-extensions-file-access-check")
+                .addArguments("--incognito")
+                .addArguments("--disable-gpu");
+        driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
     }
 
