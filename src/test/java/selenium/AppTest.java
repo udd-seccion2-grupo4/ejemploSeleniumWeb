@@ -3,10 +3,12 @@ package selenium;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Test;
@@ -21,10 +23,6 @@ public class AppTest {
         System.out.println("Iniciando configuración...");
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
         driver = new ChromeDriver();
-        // driver.get("https://www.amazon.com");
-        // driver.manage().window().maximize();
-        // System.out.println(driver.getCurrentUrl());
-        // System.out.println(driver.getTitle());
         driver.get("https://www.google.com");
     }
 
