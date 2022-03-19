@@ -29,6 +29,7 @@ public class AppTest {
                 .addArguments("--disable-popup-blocking")
                 .addArguments("--disable-default-apps")
                 .addArguments("--disable-extensions-file-access-check")
+                .addArguments("--headless")
                 .addArguments("--incognito")
                 .addArguments("--disable-gpu");
         driver = new ChromeDriver(options);
