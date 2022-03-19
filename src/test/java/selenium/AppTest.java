@@ -65,6 +65,49 @@ public class AppTest {
                 bookResult.getText());
     }
 
+    @Test
+    public void simulacionCompra() {
+        driver.manage().window().maximize();
+        driver.navigate().to("http://automationpractice.com/index.php");
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.elementToBeClickable(By.id("search_query_top")));
+        WebElement searchbox = driver.findElement(By.id("search_query_top"));
+        searchbox.sendKeys("blouse");
+        searchbox.submit();
+        By element = By.cssSelector("a.product_img_link");
+        new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(element));
+        WebElement itemElement = driver.findElement(element);
+        ((JavascriptExecutor) driver).executeScript("javascript:window.scrollBy(250,350)");
+        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(element));
+
+        // mueve mouse sobre prenda
+        Actions actionProvider = new Actions(driver);
+        actionProvider.moveToElement( itemElement ).build().perform();
+        // entra a pagina prenda
+        driver.findElement(By.linkText("More")).click();        
+
+        // agregamos a la carta
+        By button = By.cssSelector("#add_to_cart button");
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(button));
+        WebElement buttonElement = driver.findElement(button);
+        buttonElement.click();
+
+        By proceed = By.linkText("Proceed to checkout");
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(proceed));
+        WebElement proceedElement = driver.findElement(proceed);
+        proceedElement.click();
+        
+        assertEquals("$27.00", driver.findElement(By.id("total_product")).getText());
+        assertEquals("$2.00", driver.findElement(By.id("total_shipping")).getText());
+        assertEquals("$29.00", driver.findElement(By.id("total_price")).getText());
+
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(proceed));
+        WebElement procToCheckout = driver.findElement(proceed);
+        procToCheckout.click();
+
+    }
+
     @After
     public void close() {
         driver.close();
